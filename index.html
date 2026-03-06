@@ -477,6 +477,58 @@
         .cluster-alert-text strong { color: var(--orange-dark); }
 
         /* ===== RECOMMENDATIONS ===== */
+        .seasonal-banner {
+            background: linear-gradient(135deg, var(--navy) 0%, #002255 100%);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 20px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .seasonal-banner::after {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 100px; height: 100px;
+            background: rgba(255,87,29,0.15);
+            border-radius: 50%;
+        }
+        .seasonal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--orange);
+            color: var(--white);
+            font-size: 0.65em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .seasonal-title { font-size: 1.05em; font-weight: 700; margin-bottom: 6px; position: relative; }
+        .seasonal-desc { font-size: 0.82em; opacity: 0.8; line-height: 1.55; margin-bottom: 14px; position: relative; }
+        .seasonal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: var(--yellow);
+            color: var(--navy);
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.8em;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            transition: var(--transition);
+        }
+        .seasonal-btn:hover { background: var(--yellow-hover); }
+
         .rec-card {
             border: 2px solid var(--gray-200);
             border-radius: var(--radius);
@@ -740,6 +792,16 @@
             <div id="clusterAlerts"></div>
         </div>
 
+        <!-- Seasonal: BR-Wahlen Klausurtagung -->
+        <div class="section-divider" id="seasonalSection" style="display:none;">
+            <div class="seasonal-banner">
+                <div class="seasonal-badge">🗳️ Aktuell: BR-Wahlen 2026</div>
+                <div class="seasonal-title">Klausurtagung für Ihr neu gewähltes Gremium</div>
+                <div class="seasonal-desc">Zwischen März und Mai finden die Betriebsratswahlen statt. Neu gewählte Gremien stehen vor der Herausforderung, sich strategisch aufzustellen, Rollen zu verteilen und die Zusammenarbeit mit dem Arbeitgeber von Anfang an richtig zu gestalten. Unsere Klausurtagungen geben Ihrem Gremium den perfekten Start.</div>
+                <a href="https://www.gsconsult.de/kontakt/" target="_blank" class="seasonal-btn">Klausurtagung anfragen →</a>
+            </div>
+        </div>
+
         <!-- Recommendations -->
         <div class="section-divider">
             <div class="section-title"><div class="section-title-bar"></div>Empfohlene Maßnahmen</div>
@@ -886,21 +948,25 @@ const clusterAlertTexts = {
 
 const scoreRecs = {
     critical:[
+        {tag:"Klausurtagung",title:"Klausurtagung für neu gewählte Gremien",desc:"Strategische Ausrichtung, Rollenverteilung und Arbeitsprogramm für die neue Amtszeit — der perfekte Start nach der BR-Wahl.",url:"https://www.gsconsult.de/kontakt/",highlight:true},
         {tag:"Grundlagen",title:"Grundlagenschulung Betriebsverfassungsrecht",desc:"Vermittlung der gesetzlichen Rechte und Pflichten für beide Seiten.",url:"https://www.gsconsult.de/produkt/br-i-grundlagen-der-betriebsratsarbeit/"},
         {tag:"Mediation",title:"Konfliktmediation BR/AG",desc:"Professionelle Mediation zur Wiederherstellung einer arbeitsfähigen Beziehung.",url:"https://www.gsconsult.de/leistung/konflikt-management/"},
         {tag:"Coaching",title:"Beratung für Betriebs- und Personalräte",desc:"Individuelle Begleitung und Stärkung der Gremienarbeit.",url:"https://www.gsconsult.de/leistung/betriebsrat-personalrat/"}
     ],
     developing:[
+        {tag:"Klausurtagung",title:"Klausurtagung für neu gewählte Gremien",desc:"Strategische Ausrichtung, Rollenverteilung und Arbeitsprogramm für die neue Amtszeit — der perfekte Start nach der BR-Wahl.",url:"https://www.gsconsult.de/kontakt/",highlight:true},
         {tag:"Vertiefung",title:"BR II — Vertiefung der Betriebsratsarbeit",desc:"Mitbestimmungsrechte, Verhandlungsführung und strategisches Handeln vertiefen.",url:"https://www.gsconsult.de/produkt/br-ii-vertiefung-der-betriebsratsarbeit/"},
         {tag:"BEM",title:"BEM-Seminare",desc:"Betriebliches Eingliederungsmanagement gemeinsam gestalten.",url:"https://www.gsconsult.de/produkt/bem-seminar-modul-1/"},
         {tag:"Gesundheit",title:"Gesundheitsmanagement",desc:"Arbeitsklima und Gesundheitsschutz als gemeinsames Projekt.",url:"https://www.gsconsult.de/leistung/gesundheitsmanagement/"}
     ],
     good:[
+        {tag:"Klausurtagung",title:"Klausurtagung für neu gewählte Gremien",desc:"Strategische Ausrichtung, Rollenverteilung und Arbeitsprogramm für die neue Amtszeit — der perfekte Start nach der BR-Wahl.",url:"https://www.gsconsult.de/kontakt/",highlight:true},
         {tag:"Experten",title:"BR III — Mitbestimmung in sozialen Angelegenheiten",desc:"Betriebsvereinbarungen souverän gestalten und Mitbestimmung ausbauen.",url:"https://www.gsconsult.de/produkt/br-iii-mitbestimmung-in-sozialen-angelegenheiten-und-betriebsvereinbarungen/"},
         {tag:"Power-Seminar",title:"Aktuelle Rechtsprechung für Betriebsräte",desc:"Kompakt und praxisrelevant auf dem neuesten Stand bleiben.",url:"https://www.gsconsult.de/produkt/power_seminare_fuer_betriebsraete/"},
         {tag:"Change",title:"Change Management",desc:"Veränderungsprozesse gemeinsam gestalten — auf Augenhöhe.",url:"https://www.gsconsult.de/leistung/change-management/"}
     ],
     excellent:[
+        {tag:"Klausurtagung",title:"Klausurtagung für neu gewählte Gremien",desc:"Strategische Ausrichtung, Rollenverteilung und Arbeitsprogramm für die neue Amtszeit — auch für etablierte Gremien nach der Neuwahl.",url:"https://www.gsconsult.de/kontakt/",highlight:true},
         {tag:"Teams",title:"Teamentwicklung für Gremien",desc:"Ihr Gremium als Hochleistungsteam — Wirksamkeit steigern.",url:"https://www.gsconsult.de/leistung/teamentwicklung/"},
         {tag:"Leadership",title:"Leadership Programm",desc:"Führungskompetenz für Betriebsräte — strategische Partnerschaft.",url:"https://www.gsconsult.de/produkt/leadership-programm/"},
         {tag:"Zukunft",title:"Nachwuchsgewinnung im Betriebsrat",desc:"Moderne Strategien für neue Gremiumsmitglieder.",url:"https://www.gsconsult.de/produkt/marketingstrategien-fuer-die-nachwuchsgewinnung-im-betriebsrat/"}
@@ -1039,6 +1105,9 @@ function showResult(){
     for(const[k,d] of Object.entries(cs)){
         if(d.pct<40){const t=clusterAlertTexts[k]; alerts.innerHTML+=`<div class="cluster-alert"><span class="cluster-alert-icon">⚠️</span><div class="cluster-alert-text"><strong>Priorität: ${t.p}</strong><br>${t.d}</div></div>`;}
     }
+    // Seasonal banner (BR-Wahlen März-Mai)
+    const now=new Date(); const m=now.getMonth(); // 0-indexed: Feb=1, Mar=2, Apr=3, May=4, Jun=5
+    if(m>=1 && m<=5) { document.getElementById('seasonalSection').style.display='block'; }
     // Recs
     const rc=document.getElementById('recsContainer'); rc.innerHTML='';
     const recs=[...scoreRecs[level],...(level!=='critical'?scoreRecs[{excellent:'good',good:'developing',developing:'critical'}[level]]||[]:[])].slice(0,6);
