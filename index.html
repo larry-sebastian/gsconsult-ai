@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitbestimmungsindex — GS Consult</title>
+    <meta name="description" content="Bewerten Sie in 5 Minuten die Qualität der Zusammenarbeit zwischen Betriebsrat und Arbeitgeber – basierend auf dem Betriebsverfassungsgesetz.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #001134;
+            --navy-light: #001951;
+            --orange: #FF571D;
+            --orange-dark: #D53700;
+            --orange-light: #FFBEA8;
+            --orange-bg: #FFF5F0;
+            --yellow: #FFC000;
+            --yellow-hover: #E6AD00;
+            --teal: #234B41;
+            --teal-light: #E8F5F0;
+            --gray-50: #F8F9FA;
+            --gray-100: #F2F2F2;
+            --gray-200: #E0E2E8;
+            --gray-300: #CBD5E1;
+            --gray-400: #99A0AE;
+            --gray-500: #667085;
+            --gray-600: #475569;
+            --gray-700: #333333;
+            --white: #FFFFFF;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --shadow: 0 2px 8px rgba(0,17,52,0.06), 0 4px 20px rgba(0,17,52,0.04);
+            --shadow-lg: 0 4px 12px rgba(0,17,52,0.06), 0 12px 40px rgba(0,17,52,0.08);
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arimo', Verdana, Geneva, sans-serif;
+            background: var(--white);
+            color: var(--gray-700);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ===== TOP BAR ===== */
+        .topbar {
+            background: var(--navy);
+            color: var(--white);
+            font-size: 0.72em;
+            padding: 8px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .topbar-left { display: flex; align-items: center; gap: 16px; }
+        .topbar-left span { opacity: 0.75; }
+        .topbar-right a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.75;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        .topbar-right a:hover { opacity: 1; }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        /* GS Consult Köpfe-Logo */
+        .logo-icon { width: 36px; height: 36px; flex-shrink: 0; }
+        .logo-text { font-weight: 700; font-size: 1.1em; letter-spacing: 0.3px; }
+        .logo-gs { color: var(--orange); }
+        .logo-consult { color: var(--navy); }
+        .header-nav { display: flex; align-items: center; gap: 20px; }
+        .header-nav a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 0.82em;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .header-nav a:hover { color: var(--orange); }
+        .header-badge {
+            font-size: 0.7em;
+            background: var(--yellow);
+            color: var(--navy);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 56px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,87,29,0.08) 100%);
+        }
+        .hero-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-breadcrumb {
+            font-size: 0.72em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--orange);
+            margin-bottom: 16px;
+        }
+        .hero-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .hero-title span { color: var(--orange); }
+        .hero-desc {
+            font-size: 1em;
+            opacity: 0.8;
+            line-height: 1.65;
+            max-width: 600px;
+            margin-bottom: 28px;
+        }
+        .hero-meta {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82em;
+            font-weight: 600;
+        }
+        .hero-meta-icon {
+            width: 28px; height: 28px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .main { max-width: 740px; margin: 0 auto; padding: 0 20px; }
+
+        /* ===== PROGRESS ===== */
+        .progress-wrap {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin: -28px auto 24px;
+            position: relative;
+            z-index: 2;
+            max-width: 740px;
+            display: none;
+            box-shadow: var(--shadow);
+        }
+        .progress-wrap.visible { display: block; }
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .progress-label { font-size: 0.75em; color: var(--gray-500); font-weight: 600; }
+        .progress-step { font-size: 0.75em; color: var(--orange); font-weight: 700; }
+        .progress-bar { height: 5px; background: var(--gray-200); border-radius: 3px; overflow: hidden; }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--orange), var(--orange-light));
+            border-radius: 3px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+        }
+
+        /* ===== CARD ===== */
+        .card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            margin: 36px auto;
+            box-shadow: var(--shadow-lg);
+            max-width: 740px;
+        }
+        .card-funnel {
+            margin-top: -28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== SCREENS ===== */
+        .screen { display: none; }
+        .screen.active { display: block; animation: fadeIn 0.35s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== INTRO ===== */
+        .intro-section { padding: 36px 0; }
+        .intro-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .intro-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        .intro-feature-icon {
+            width: 34px; height: 34px;
+            background: var(--orange-bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* ===== ROLE ===== */
+        .role-title { font-size: 0.95em; font-weight: 700; margin-bottom: 12px; color: var(--navy); }
+        .role-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; }
+        .role-btn {
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+        .role-btn:hover { border-color: var(--orange); background: var(--orange-bg); }
+        .role-btn.selected { border-color: var(--orange); background: var(--orange-bg); box-shadow: 0 0 0 3px rgba(255,87,29,0.12); }
+        .role-btn-icon { font-size: 28px; margin-bottom: 6px; }
+        .role-btn-label { font-weight: 700; font-size: 0.88em; color: var(--navy); }
+        .role-btn-desc { font-size: 0.72em; color: var(--gray-500); margin-top: 4px; }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border: none;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 0.88em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .btn-primary { background: var(--yellow); color: var(--navy); }
+        .btn-primary:hover { background: var(--yellow-hover); transform: translateY(-1px); }
+        .btn-primary:disabled { background: var(--gray-200); color: var(--gray-400); cursor: not-allowed; transform: none; }
+        .btn-orange { background: var(--orange); color: var(--white); }
+        .btn-orange:hover { background: var(--orange-dark); transform: translateY(-1px); }
+        .btn-secondary { background: transparent; color: var(--gray-500); border: 2px solid var(--gray-200); }
+        .btn-secondary:hover { border-color: var(--gray-400); color: var(--navy); }
+        .btn-row { display: flex; gap: 12px; justify-content: space-between; margin-top: 28px; }
+
+        /* ===== QUESTION ===== */
+        .question-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .question-category {
+            font-size: 0.72em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--orange);
+        }
+        .question-law {
+            font-size: 0.68em;
+            font-weight: 600;
+            color: var(--navy);
+            background: var(--gray-100);
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+        .question-weight {
+            font-size: 0.65em;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+        .weight-3 { background: var(--orange-bg); color: var(--orange); }
+        .weight-2 { background: #FFF8EE; color: #B45309; }
+        .weight-1 { background: var(--gray-100); color: var(--gray-500); }
+        .question-text {
+            font-size: 1.12em;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 22px;
+            color: var(--navy);
+        }
+        .answer-options { display: flex; flex-direction: column; gap: 10px; }
+        .answer-btn {
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 15px 18px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-family: inherit;
+            font-size: 0.85em;
+            color: var(--gray-700);
+        }
+        .answer-btn:hover { border-color: var(--orange); background: var(--orange-bg); }
+        .answer-btn.selected { border-color: var(--orange); background: var(--orange-bg); box-shadow: 0 0 0 3px rgba(255,87,29,0.12); }
+        .answer-indicator {
+            width: 24px; height: 24px;
+            border: 2px solid var(--gray-300);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .answer-btn.selected .answer-indicator { border-color: var(--orange); background: var(--orange); }
+        .answer-btn.selected .answer-indicator::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+
+        /* ===== RESULT ===== */
+        .result-header { text-align: center; margin-bottom: 32px; }
+        .result-label {
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--gray-500);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .score-ring-wrap { position: relative; width: 200px; height: 200px; margin: 0 auto 16px; }
+        .score-ring-bg, .score-ring-fill {
+            position: absolute; top: 0; left: 0; width: 200px; height: 200px;
+        }
+        .score-ring-bg circle, .score-ring-fill circle {
+            fill: none; stroke-width: 10; cx: 100; cy: 100; r: 85;
+        }
+        .score-ring-bg circle { stroke: var(--gray-200); }
+        .score-ring-fill circle {
+            stroke-linecap: round;
+            stroke-dasharray: 534.07;
+            stroke-dashoffset: 534.07;
+            transform: rotate(-90deg);
+            transform-origin: center;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.5s;
+        }
+        .score-number {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.8em; font-weight: 700; color: var(--navy);
+        }
+        .score-number small { font-size: 0.3em; color: var(--gray-400); font-weight: 700; }
+        .score-badge-wrap { margin-bottom: 14px; }
+        .score-badge {
+            display: inline-block;
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+        }
+        .level-critical .score-ring-fill circle { stroke: #DC2626; }
+        .level-critical .score-badge { background: #FEF2F2; color: #DC2626; }
+        .level-developing .score-ring-fill circle { stroke: var(--orange); }
+        .level-developing .score-badge { background: var(--orange-bg); color: var(--orange-dark); }
+        .level-good .score-ring-fill circle { stroke: var(--teal); }
+        .level-good .score-badge { background: var(--teal-light); color: var(--teal); }
+        .level-excellent .score-ring-fill circle { stroke: #059669; }
+        .level-excellent .score-badge { background: #ECFDF5; color: #059669; }
+
+        .result-title { font-size: 1.35em; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+        .result-desc { color: var(--gray-500); font-size: 0.88em; max-width: 520px; margin: 0 auto; line-height: 1.65; }
+
+        /* ===== SECTION DIVIDER ===== */
+        .section-divider {
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 2px solid var(--gray-100);
+        }
+        .section-title {
+            font-size: 1.05em;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title-bar {
+            width: 4px;
+            height: 22px;
+            background: var(--orange);
+            border-radius: 2px;
+        }
+
+        /* ===== RADAR CHART ===== */
+        .radar-wrap {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .radar-svg-wrap { width: 260px; height: 260px; flex-shrink: 0; }
+        .radar-legend { display: flex; flex-direction: column; gap: 12px; flex: 1; min-width: 200px; }
+        .radar-legend-item { display: flex; align-items: center; gap: 12px; }
+        .radar-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .radar-legend-label { font-size: 0.82em; font-weight: 600; color: var(--gray-700); min-width: 120px; }
+        .radar-legend-bar-wrap { flex: 1; height: 8px; background: var(--gray-100); border-radius: 4px; overflow: hidden; min-width: 60px; }
+        .radar-legend-bar { height: 100%; border-radius: 4px; transition: width 1s ease; }
+        .radar-legend-pct { font-size: 0.82em; font-weight: 700; color: var(--navy); min-width: 36px; text-align: right; }
+
+        /* ===== CLUSTER ALERTS ===== */
+        .cluster-alert {
+            background: #FEF9EE;
+            border: 1px solid #FDE68A;
+            border-left: 4px solid var(--orange);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-top: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.82em;
+        }
+        .cluster-alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+        .cluster-alert-text { color: var(--gray-700); line-height: 1.5; }
+        .cluster-alert-text strong { color: var(--orange-dark); }
+
+        /* ===== RECOMMENDATIONS ===== */
+        .rec-card {
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+            border-left: 4px solid var(--orange);
+            position: relative;
+        }
+        .rec-card:hover { box-shadow: 0 2px 12px rgba(0,17,52,0.06); border-color: var(--orange-light); border-left-color: var(--orange); }
+        .rec-card-tag {
+            font-size: 0.65em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--orange);
+            margin-bottom: 4px;
+        }
+        .rec-card-title { font-weight: 700; font-size: 0.92em; margin-bottom: 4px; color: var(--navy); }
+        .rec-card-desc { font-size: 0.8em; color: var(--gray-500); line-height: 1.55; }
+        .rec-card-arrow {
+            position: absolute;
+            top: 50%;
+            right: 18px;
+            transform: translateY(-50%);
+            color: var(--orange);
+            font-size: 1.1em;
+        }
+
+        /* ===== LEAD FORM ===== */
+        .lead-form-desc { font-size: 0.85em; color: var(--gray-500); margin-bottom: 18px; line-height: 1.6; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+        .form-group { display: flex; flex-direction: column; gap: 4px; }
+        .form-label { font-size: 0.72em; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.3px; }
+        .form-input {
+            padding: 11px 14px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.85em;
+            color: var(--navy);
+            transition: var(--transition);
+        }
+        .form-input:focus { outline: none; border-color: var(--orange); }
+        .form-privacy { font-size: 0.65em; color: var(--gray-400); margin-top: 10px; line-height: 1.4; }
+        .form-privacy a { color: var(--orange); font-weight: 600; text-decoration: none; }
+        .lead-success {
+            text-align: center; padding: 28px;
+            background: var(--teal-light); border-radius: var(--radius); display: none;
+        }
+        .lead-success.active { display: block; animation: fadeIn 0.3s ease; }
+        .lead-success-icon { font-size: 36px; margin-bottom: 8px; }
+        .lead-success-title { font-weight: 700; color: var(--navy); }
+        .lead-success-desc { font-size: 0.82em; color: var(--gray-600); margin-top: 4px; }
+
+        /* ===== CTA ===== */
+        .cta-section {
+            background: var(--navy);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-top: 32px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -30px; right: -30px;
+            width: 120px; height: 120px;
+            background: rgba(255,87,29,0.12);
+            border-radius: 50%;
+        }
+        .cta-bar {
+            width: 60px; height: 4px;
+            background: var(--orange);
+            border-radius: 2px;
+            margin: 0 auto 16px;
+        }
+        .cta-title { font-size: 1.15em; font-weight: 700; margin-bottom: 6px; position: relative; }
+        .cta-desc { font-size: 0.8em; opacity: 0.75; margin-bottom: 20px; position: relative; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 48px 24px 24px;
+            margin-top: 48px;
+        }
+        .footer-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+        .footer-brand-text { font-weight: 700; font-size: 1.1em; }
+        .footer-brand .logo-gs { color: var(--orange); }
+        .footer-desc { font-size: 0.78em; opacity: 0.65; line-height: 1.6; }
+        .footer-col-title { font-size: 0.82em; font-weight: 700; margin-bottom: 12px; color: var(--orange); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 6px; }
+        .footer-links a { color: var(--white); opacity: 0.65; text-decoration: none; font-size: 0.78em; transition: var(--transition); }
+        .footer-links a:hover { opacity: 1; }
+        .footer-bottom {
+            max-width: 900px;
+            margin: 32px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.68em;
+            opacity: 0.5;
+        }
+        .footer-bottom a { color: var(--white); text-decoration: none; margin-left: 16px; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .card { padding: 28px 20px; }
+            .hero { padding: 36px 20px; }
+            .hero-title { font-size: 1.6em; }
+            .intro-features { grid-template-columns: 1fr; }
+            .role-options { grid-template-columns: 1fr; }
+            .question-text { font-size: 1em; }
+            .form-row { grid-template-columns: 1fr; }
+            .btn-row { flex-direction: column-reverse; }
+            .btn { width: 100%; }
+            .radar-svg-wrap { width: 220px; height: 220px; }
+            .radar-wrap { flex-direction: column; }
+            .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+            .topbar { display: none; }
+            .hero-meta { gap: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+    <div class="topbar-left">
+        <span>📍 Stau 123 | 26122 Oldenburg</span>
+        <span>📞 0441 219 805 90</span>
+    </div>
+    <div class="topbar-right">
+        <a href="https://www.gsconsult.de" target="_blank">→ zu GS Consult</a>
+    </div>
+</div>
+
+<!-- Header -->
+<div class="header">
+    <a href="https://www.gsconsult.de" class="header-brand" target="_blank">
+        <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 50 C10 25, 30 10, 45 15 C50 17, 52 22, 50 30 C48 38, 42 45, 38 48 C34 51, 28 52, 22 50 C16 48, 10 42, 10 35 Z" fill="#FF571D"/>
+            <circle cx="30" cy="35" r="4" fill="#FFF"/>
+            <path d="M90 50 C90 25, 70 10, 55 15 C50 17, 48 22, 50 30 C52 38, 58 45, 62 48 C66 51, 72 52, 78 50 C84 48, 90 42, 90 35 Z" fill="#001134"/>
+            <circle cx="70" cy="35" r="4" fill="#FFF"/>
+        </svg>
+        <span class="logo-text"><span class="logo-gs">GS</span> <span class="logo-consult">CONSULT</span></span>
+    </a>
+    <div class="header-nav">
+        <a href="https://www.gsconsult.de/leistung/" target="_blank">Leistungen</a>
+        <span class="header-badge">Kostenloses Tool</span>
+    </div>
+</div>
+
+<!-- Hero -->
+<div class="hero" id="heroSection">
+    <div class="hero-inner">
+        <div class="hero-breadcrumb">Mitbestimmungsindex · Kostenlose Analyse</div>
+        <h1 class="hero-title">Wie gut funktioniert Ihre <span>Mitbestimmung</span>?</h1>
+        <p class="hero-desc">13 Fragen, direkt abgeleitet aus dem Betriebsverfassungsgesetz und den 5 Stufen der Mitbestimmungsrechte. Erfahren Sie, wo Ihre Zusammenarbeit steht.</p>
+        <div class="hero-meta">
+            <div class="hero-meta-item"><div class="hero-meta-icon">⏱️</div>5 Minuten</div>
+            <div class="hero-meta-item"><div class="hero-meta-icon">📜</div>BetrVG-basiert</div>
+            <div class="hero-meta-item"><div class="hero-meta-icon">📊</div>Sofort-Ergebnis</div>
+            <div class="hero-meta-item"><div class="hero-meta-icon">🎯</div>Empfehlungen</div>
+        </div>
+    </div>
+</div>
+
+<!-- Progress (below hero, overlaps) -->
+<div class="main">
+    <div class="progress-wrap" id="progressWrap">
+        <div class="progress-top">
+            <span class="progress-label" id="progressCluster"></span>
+            <span class="progress-step" id="progressStep">Frage 1 von 13</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Card -->
+<div class="card card-funnel">
+
+    <!-- ===== INTRO ===== -->
+    <div class="screen active" id="screenIntro">
+        <div class="intro-features">
+            <div class="intro-feature"><div class="intro-feature-icon">🏛️</div><span>Für Betriebsräte</span></div>
+            <div class="intro-feature"><div class="intro-feature-icon">🏢</div><span>Für Arbeitgeber</span></div>
+            <div class="intro-feature"><div class="intro-feature-icon">⚖️</div><span>5 Stufen der Mitbestimmung</span></div>
+            <div class="intro-feature"><div class="intro-feature-icon">🔒</div><span>Anonym & kostenlos</span></div>
+        </div>
+
+        <div class="role-title">Ich bin...</div>
+        <div class="role-options">
+            <div class="role-btn" data-role="betriebsrat" onclick="selectRole(this)">
+                <div class="role-btn-icon">🏛️</div>
+                <div class="role-btn-label">Betriebsrat</div>
+                <div class="role-btn-desc">Arbeitnehmervertretung</div>
+            </div>
+            <div class="role-btn" data-role="arbeitgeber" onclick="selectRole(this)">
+                <div class="role-btn-icon">🏢</div>
+                <div class="role-btn-label">Arbeitgeber:in</div>
+                <div class="role-btn-desc">Geschäftsführung / HR</div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" id="btnStart" disabled onclick="startQuiz()">Index berechnen →</button>
+    </div>
+
+    <!-- ===== QUESTION ===== -->
+    <div class="screen" id="screenQuestion">
+        <div class="question-meta">
+            <span class="question-category" id="qCategory"></span>
+            <span class="question-law" id="qLaw"></span>
+            <span class="question-weight" id="qWeight"></span>
+        </div>
+        <h2 class="question-text" id="qText"></h2>
+        <div class="answer-options" id="qOptions"></div>
+        <div class="btn-row">
+            <button class="btn btn-secondary" id="btnBack" onclick="prevQuestion()">← Zurück</button>
+            <button class="btn btn-primary" id="btnNext" disabled onclick="nextQuestion()">Weiter →</button>
+        </div>
+    </div>
+
+    <!-- ===== RESULT ===== -->
+    <div class="screen" id="screenResult">
+        <div class="result-header" id="resultHeader">
+            <div class="result-label">Ihr Mitbestimmungsindex</div>
+            <div class="score-ring-wrap">
+                <svg class="score-ring-bg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="85" fill="none" stroke-width="10"/></svg>
+                <svg class="score-ring-fill" viewBox="0 0 200 200"><circle id="scoreCircle" cx="100" cy="100" r="85" fill="none" stroke-width="10"/></svg>
+                <div class="score-number"><span id="scoreValue">0</span><small>/100</small></div>
+            </div>
+            <div class="score-badge-wrap"><span class="score-badge" id="scoreBadge"></span></div>
+            <h2 class="result-title" id="resultTitle"></h2>
+            <p class="result-desc" id="resultDesc"></p>
+        </div>
+
+        <!-- Radar -->
+        <div class="section-divider">
+            <div class="section-title"><div class="section-title-bar"></div>Cluster-Analyse</div>
+            <div class="radar-wrap">
+                <div class="radar-svg-wrap"><svg id="radarChart" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg"></svg></div>
+                <div class="radar-legend" id="radarLegend"></div>
+            </div>
+            <div id="clusterAlerts"></div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="section-divider">
+            <div class="section-title"><div class="section-title-bar"></div>Empfohlene Maßnahmen</div>
+            <div id="recsContainer"></div>
+        </div>
+
+        <!-- Lead Form -->
+        <div class="section-divider" id="leadSection">
+            <div class="section-title"><div class="section-title-bar"></div>Detaillierten Bericht erhalten</div>
+            <div class="lead-form-desc">Wir senden Ihnen eine ausführliche Auswertung mit allen Cluster-Details und konkreten Handlungsempfehlungen — kostenlos und unverbindlich.</div>
+            <form id="leadForm" onsubmit="submitLead(event)">
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Vorname *</label><input type="text" class="form-input" name="firstName" required placeholder="Max"></div>
+                    <div class="form-group"><label class="form-label">Nachname *</label><input type="text" class="form-input" name="lastName" required placeholder="Mustermann"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">E-Mail *</label><input type="email" class="form-input" name="email" required placeholder="max@firma.de"></div>
+                    <div class="form-group"><label class="form-label">Unternehmen</label><input type="text" class="form-input" name="company" placeholder="Firma GmbH"></div>
+                </div>
+                <button type="submit" class="btn btn-orange" style="width:100%;margin-top:12px">Kostenlosen Bericht anfordern →</button>
+                <div class="form-privacy">Mit dem Absenden stimmen Sie unserer <a href="https://www.gsconsult.de/datenschutzerklaerung/" target="_blank">Datenschutzerklärung</a> zu. Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.</div>
+            </form>
+        </div>
+
+        <div class="lead-success" id="leadSuccess">
+            <div class="lead-success-icon">✅</div>
+            <div class="lead-success-title">Vielen Dank!</div>
+            <div class="lead-success-desc">Wir senden Ihnen den detaillierten Bericht in Kürze per E-Mail zu.</div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <div class="cta-bar"></div>
+            <div class="cta-title">Kostenlose Erstberatung buchen</div>
+            <div class="cta-desc">Besprechen Sie Ihr Ergebnis mit unseren Expert:innen — 15 Minuten, unverbindlich.</div>
+            <a href="https://www.gsconsult.de/kontakt/" target="_blank" class="btn btn-primary">Termin vereinbaren →</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand">
+                <svg width="30" height="30" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 50 C10 25, 30 10, 45 15 C50 17, 52 22, 50 30 C48 38, 42 45, 38 48 C34 51, 28 52, 22 50 C16 48, 10 42, 10 35 Z" fill="#FF571D"/>
+                    <circle cx="30" cy="35" r="4" fill="#FFF"/>
+                    <path d="M90 50 C90 25, 70 10, 55 15 C50 17, 48 22, 50 30 C52 38, 58 45, 62 48 C66 51, 72 52, 78 50 C84 48, 90 42, 90 35 Z" fill="#FFF" opacity="0.5"/>
+                    <circle cx="70" cy="35" r="4" fill="#FFF"/>
+                </svg>
+                <span class="footer-brand-text"><span class="logo-gs">GS</span> CONSULT</span>
+            </div>
+            <p class="footer-desc">Wir stehen Ihnen jederzeit für Fragen zur Verfügung. Kontaktieren Sie uns, um mehr über unsere Beratungsleistungen zu erfahren.</p>
+        </div>
+        <div>
+            <div class="footer-col-title">Kontakt</div>
+            <ul class="footer-links">
+                <li><a href="tel:+4944121980590">📞 0441 219 805 90</a></li>
+                <li><a href="mailto:info@gsconsult.de">✉️ info@gsconsult.de</a></li>
+                <li><a>📍 Stau 123 | 26122 Oldenburg</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="footer-col-title">Leistungen</div>
+            <ul class="footer-links">
+                <li><a href="https://www.gsconsult.de/leistung/" target="_blank">Führung & Leadership</a></li>
+                <li><a href="https://www.gsconsult.de/leistung/" target="_blank">Gesundheit & Zusammenarbeit</a></li>
+                <li><a href="https://www.gsconsult.de/leistung/" target="_blank">Arbeitsrecht & Mitbestimmung</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2026 GS Consult · Ihr Experte für Veränderungen im Unternehmen</span>
+        <span>
+            <a href="https://www.gsconsult.de/datenschutzerklaerung/" target="_blank">Datenschutz</a>
+            <a href="https://www.gsconsult.de/impressum/" target="_blank">Impressum</a>
+        </span>
+    </div>
+</footer>
+
+<script>
+// ==================================================
+// DATA — 13 BetrVG Questions
+// ==================================================
+const questions = [
+    { id:1, cluster:"A", clusterName:"Grundlagen der Zusammenarbeit", category:"Grundlagen", law:"§74 Abs. 1 BetrVG", weight:1,
+      text:"Finden zwischen Arbeitgeber und Betriebsrat regelmäßige Monatsgespräche statt?",
+      options:[{text:"Ja, mindestens monatlich",value:3},{text:"Ja, aber unregelmäßig",value:2},{text:"Selten",value:1},{text:"Nein",value:0}]},
+    { id:2, cluster:"A", clusterName:"Grundlagen der Zusammenarbeit", category:"Grundlagen", law:"§80 Abs. 2 BetrVG", weight:1,
+      text:"Informiert der Arbeitgeber den Betriebsrat rechtzeitig und umfassend, damit dieser seine allgemeinen Aufgaben erfüllen kann?",
+      options:[{text:"Ja, proaktiv und vollständig",value:3},{text:"Überwiegend, aber manchmal lückenhaft",value:2},{text:"Nur auf Nachfrage",value:1},{text:"Kaum oder gar nicht",value:0}]},
+    { id:3, cluster:"B", clusterName:"Soziale Angelegenheiten", category:"Arbeitszeit & Ordnung", law:"§87 Abs. 1 Nr. 1-3 BetrVG", weight:3,
+      text:"Wie wird der Betriebsrat bei Regelungen zu Arbeitszeiten, Pausen, Schichtplänen und Betriebsordnung einbezogen?",
+      options:[{text:"Gleichberechtigte Mitgestaltung, Betriebsvereinbarung vorhanden",value:3},{text:"BR wird beteiligt, aber AG entscheidet letztlich",value:2},{text:"BR wird informiert, aber kaum einbezogen",value:1},{text:"Keine Beteiligung",value:0}]},
+    { id:4, cluster:"B", clusterName:"Soziale Angelegenheiten", category:"Überwachung & KI", law:"§87 Abs. 1 Nr. 6 BetrVG", weight:3,
+      text:"Wird der Betriebsrat bei der Einführung technischer Systeme, die Verhalten oder Leistung überwachen können (z.B. Software, KI-Tools), vollständig einbezogen?",
+      options:[{text:"Ja, gemeinsame Entscheidung und Betriebsvereinbarung",value:3},{text:"BR wird beteiligt, aber mit Vorbehalten",value:2},{text:"BR wird erst nachträglich informiert",value:1},{text:"Keine Beteiligung",value:0}]},
+    { id:5, cluster:"B", clusterName:"Soziale Angelegenheiten", category:"Gesundheitsschutz", law:"§87 Abs. 1 Nr. 7 BetrVG", weight:3,
+      text:"Wie gestaltet sich die Zusammenarbeit bei Arbeitsschutz und betrieblichem Gesundheitsmanagement?",
+      options:[{text:"Gemeinsam entwickelte Maßnahmen, BV vorhanden",value:3},{text:"Regelmäßiger Austausch, aber AG gibt Richtung vor",value:2},{text:"BR wird sporadisch einbezogen",value:1},{text:"Kein nennenswerter Austausch",value:0}]},
+    { id:6, cluster:"B", clusterName:"Soziale Angelegenheiten", category:"Entgeltgestaltung", law:"§87 Abs. 1 Nr. 10-11 BetrVG", weight:3,
+      text:"Wird der Betriebsrat bei Fragen der betrieblichen Lohn- und Entgeltgestaltung einbezogen?",
+      options:[{text:"Gleichberechtigte Mitgestaltung, transparente Entgeltsysteme",value:3},{text:"Beteiligung bei grundlegenden Änderungen",value:2},{text:"Nur formale Beteiligung",value:1},{text:"Keine Einbindung",value:0}]},
+    { id:7, cluster:"C", clusterName:"Organisatorische Angelegenheiten", category:"Arbeitsplatzgestaltung", law:"§90 BetrVG", weight:2,
+      text:"Wird der Betriebsrat bei der Planung neuer Arbeitsverfahren, technischer Anlagen oder Arbeitsplatzveränderungen rechtzeitig unterrichtet und beraten?",
+      options:[{text:"Frühzeitige Einbindung mit Unterlagen, echte Beratung",value:3},{text:"Information erfolgt, aber oft zu spät",value:2},{text:"Nur bei großen Änderungen",value:1},{text:"Keine systematische Einbindung",value:0}]},
+    { id:8, cluster:"C", clusterName:"Organisatorische Angelegenheiten", category:"Personalplanung", law:"§92 BetrVG", weight:2,
+      text:"Wie wird der Betriebsrat in die Personalplanung (Personalbedarf, geplante Maßnahmen, externe Kräfte) einbezogen?",
+      options:[{text:"Umfassende Unterrichtung mit Unterlagen, gemeinsame Beratung",value:3},{text:"Regelmäßige Information, aber wenig Mitgestaltung",value:2},{text:"Nur punktuelle Information",value:1},{text:"Keine Beteiligung",value:0}]},
+    { id:9, cluster:"C", clusterName:"Organisatorische Angelegenheiten", category:"Weiterbildung", law:"§96-98 BetrVG", weight:3,
+      text:"Wie gestaltet sich die Zusammenarbeit bei betrieblicher Weiterbildung und Berufsbildung?",
+      options:[{text:"Gemeinsame Bedarfsermittlung, BR bei Auswahl von Maßnahmen und Teilnehmern beteiligt",value:3},{text:"Regelmäßige Beratung, BR kann Vorschläge machen",value:2},{text:"BR wird über Maßnahmen informiert",value:1},{text:"Kein Austausch",value:0}]},
+    { id:10, cluster:"D", clusterName:"Personelle Angelegenheiten", category:"Einstellung & Versetzung", law:"§99 BetrVG", weight:2,
+      text:"Wie läuft die Beteiligung des Betriebsrats bei Einstellungen, Versetzungen, Ein- und Umgruppierungen ab?",
+      options:[{text:"Rechtzeitige vollständige Unterrichtung, Zustimmung wird eingeholt",value:3},{text:"Beteiligung erfolgt, aber oft unter Zeitdruck",value:2},{text:"Nur formale Beteiligung (Durchwinken)",value:1},{text:"Maßnahmen werden ohne Beteiligung durchgeführt",value:0}]},
+    { id:11, cluster:"D", clusterName:"Personelle Angelegenheiten", category:"Kündigungen", law:"§102 BetrVG", weight:2,
+      text:"Wie wird der Betriebsrat bei geplanten Kündigungen einbezogen?",
+      options:[{text:"Umfassende Anhörung mit allen Gründen, ausreichend Bedenkzeit",value:3},{text:"Anhörung erfolgt, aber teilweise oberflächlich",value:2},{text:"Anhörung nur pro forma",value:1},{text:"BR wird übergangen oder zu spät einbezogen",value:0}]},
+    { id:12, cluster:"E", clusterName:"Wirtschaftliche Angelegenheiten", category:"Wirtschaftsausschuss", law:"§106 BetrVG", weight:2,
+      text:"Wird der Betriebsrat bzw. Wirtschaftsausschuss über die wirtschaftliche Lage des Unternehmens informiert und beraten?",
+      options:[{text:"Umfassende, rechtzeitige Information mit Unterlagen, echte Beratung",value:3},{text:"Regelmäßige Information, aber ohne tiefe Beratung",value:2},{text:"Nur oberflächliche Auskünfte",value:1},{text:"Keine wirtschaftliche Transparenz",value:0}]},
+    { id:13, cluster:"E", clusterName:"Wirtschaftliche Angelegenheiten", category:"Betriebsänderungen", law:"§111-112 BetrVG", weight:3,
+      text:"Falls Betriebsänderungen stattfanden (Umstrukturierung, Standortverlegung, Personalabbau): Wie wurde der Betriebsrat einbezogen?",
+      options:[{text:"Rechtzeitige Unterrichtung, gemeinsamer Interessenausgleich und Sozialplan",value:3},{text:"Beteiligung mit Verhandlungen, aber unter Druck",value:2},{text:"Nur formale Beteiligung",value:1},{text:"Keine Beteiligung oder nicht zutreffend",value:0}]}
+];
+
+const clusters = {
+    A:{name:"Grundlagen",fullName:"Grundlagen der Zusammenarbeit",color:"#3B82F6",questions:[0,1],maxRaw:6},
+    B:{name:"Soziales",fullName:"Soziale Angelegenheiten",color:"#FF571D",questions:[2,3,4,5],maxRaw:36},
+    C:{name:"Organisation",fullName:"Organisatorische Angelegenheiten",color:"#FFC000",questions:[6,7,8],maxRaw:21},
+    D:{name:"Personal",fullName:"Personelle Angelegenheiten",color:"#8B5CF6",questions:[9,10],maxRaw:12},
+    E:{name:"Wirtschaft",fullName:"Wirtschaftliche Angelegenheiten",color:"#234B41",questions:[11,12],maxRaw:15}
+};
+
+const clusterAlertTexts = {
+    A:{p:"Grundlagen der Zusammenarbeit stabilisieren",d:"Monatsgespräche, Informationsfluss und Vertrauensaufbau"},
+    B:{p:"Erzwingbare Mitbestimmung in sozialen Angelegenheiten",d:"BV Arbeitszeit, BV Überwachung/IT, BV Gesundheitsschutz, BV Entgelt"},
+    C:{p:"Mitgestaltung bei Veränderungsprozessen",d:"Arbeitsplatzgestaltung, Personalplanung, Weiterbildung"},
+    D:{p:"Personelle Einzelmaßnahmen rechtssicher gestalten",d:"§99-Prozesse, Kündigungsverfahren, Auswahlrichtlinien"},
+    E:{p:"Wirtschaftliche Transparenz und Betriebsänderungs-Kompetenz",d:"Wirtschaftsausschuss, Interessenausgleich, Sozialplan"}
+};
+
+const scoreRecs = {
+    critical:[
+        {tag:"Grundlagen",title:"Grundlagenschulung Betriebsverfassungsrecht",desc:"Vermittlung der gesetzlichen Rechte und Pflichten für beide Seiten.",url:"https://www.gsconsult.de/produkt/br-i-grundlagen-der-betriebsratsarbeit/"},
+        {tag:"Mediation",title:"Konfliktmediation BR/AG",desc:"Professionelle Mediation zur Wiederherstellung einer arbeitsfähigen Beziehung.",url:"https://www.gsconsult.de/leistung/konflikt-management/"},
+        {tag:"Coaching",title:"Beratung für Betriebs- und Personalräte",desc:"Individuelle Begleitung und Stärkung der Gremienarbeit.",url:"https://www.gsconsult.de/leistung/betriebsrat-personalrat/"}
+    ],
+    developing:[
+        {tag:"Vertiefung",title:"BR II — Vertiefung der Betriebsratsarbeit",desc:"Mitbestimmungsrechte, Verhandlungsführung und strategisches Handeln vertiefen.",url:"https://www.gsconsult.de/produkt/br-ii-vertiefung-der-betriebsratsarbeit/"},
+        {tag:"BEM",title:"BEM-Seminare",desc:"Betriebliches Eingliederungsmanagement gemeinsam gestalten.",url:"https://www.gsconsult.de/produkt/bem-seminar-modul-1/"},
+        {tag:"Gesundheit",title:"Gesundheitsmanagement",desc:"Arbeitsklima und Gesundheitsschutz als gemeinsames Projekt.",url:"https://www.gsconsult.de/leistung/gesundheitsmanagement/"}
+    ],
+    good:[
+        {tag:"Experten",title:"BR III — Mitbestimmung in sozialen Angelegenheiten",desc:"Betriebsvereinbarungen souverän gestalten und Mitbestimmung ausbauen.",url:"https://www.gsconsult.de/produkt/br-iii-mitbestimmung-in-sozialen-angelegenheiten-und-betriebsvereinbarungen/"},
+        {tag:"Power-Seminar",title:"Aktuelle Rechtsprechung für Betriebsräte",desc:"Kompakt und praxisrelevant auf dem neuesten Stand bleiben.",url:"https://www.gsconsult.de/produkt/power_seminare_fuer_betriebsraete/"},
+        {tag:"Change",title:"Change Management",desc:"Veränderungsprozesse gemeinsam gestalten — auf Augenhöhe.",url:"https://www.gsconsult.de/leistung/change-management/"}
+    ],
+    excellent:[
+        {tag:"Teams",title:"Teamentwicklung für Gremien",desc:"Ihr Gremium als Hochleistungsteam — Wirksamkeit steigern.",url:"https://www.gsconsult.de/leistung/teamentwicklung/"},
+        {tag:"Leadership",title:"Leadership Programm",desc:"Führungskompetenz für Betriebsräte — strategische Partnerschaft.",url:"https://www.gsconsult.de/produkt/leadership-programm/"},
+        {tag:"Zukunft",title:"Nachwuchsgewinnung im Betriebsrat",desc:"Moderne Strategien für neue Gremiumsmitglieder.",url:"https://www.gsconsult.de/produkt/marketingstrategien-fuer-die-nachwuchsgewinnung-im-betriebsrat/"}
+    ]
+};
+
+const resultTexts = {
+    critical:{badge:"Kritisch",title:"Kritisch — Erheblicher Handlungsbedarf",desc:"Die Zusammenarbeit zeigt erhebliche Defizite. Grundlegende Mitbestimmungsrechte werden nicht oder kaum gelebt. Ein strukturierter Aufbau eröffnet große Chancen."},
+    developing:{badge:"Ausbaufähig",title:"Ausbaufähig — Potenzial vorhanden",desc:"Es gibt Ansätze der Zusammenarbeit, aber in vielen Bereichen bleibt Potenzial ungenutzt. Gezielte Weiterbildung kann die Zusammenarbeit deutlich verbessern."},
+    good:{badge:"Gut",title:"Gut — Solide Zusammenarbeit",desc:"Ihre Zusammenarbeit funktioniert in den meisten Bereichen. Es gibt Optimierungspotenzial in einzelnen Themenfeldern."},
+    excellent:{badge:"Exzellent",title:"Exzellent — Vorbildlich aufgestellt",desc:"Hervorragend! Arbeitgeber und Betriebsrat agieren als echte Partner. Strategische Impulse halten diesen Standard."}
+};
+
+// ==================================================
+// STATE
+// ==================================================
+let selectedRole=null, currentQ=0, answers=new Array(questions.length).fill(null);
+
+// ==================================================
+// FUNCTIONS
+// ==================================================
+function selectRole(el){
+    document.querySelectorAll('.role-btn').forEach(b=>b.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedRole=el.dataset.role;
+    document.getElementById('btnStart').disabled=false;
+}
+function showScreen(id){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+function updateProgress(){
+    const pct=((currentQ+1)/questions.length)*100;
+    document.getElementById('progressFill').style.width=pct+'%';
+    document.getElementById('progressStep').textContent=`Frage ${currentQ+1} von ${questions.length}`;
+    document.getElementById('progressCluster').textContent=questions[currentQ].clusterName;
+}
+function renderQuestion(){
+    const q=questions[currentQ];
+    document.getElementById('qCategory').textContent=q.category;
+    document.getElementById('qLaw').textContent=q.law;
+    const wEl=document.getElementById('qWeight');
+    const wL={1:'Basis',2:'Wichtig',3:'Sehr wichtig'};
+    wEl.textContent=`Gewicht ×${q.weight} — ${wL[q.weight]}`;
+    wEl.className='question-weight weight-'+q.weight;
+    document.getElementById('qText').textContent=q.text;
+    const c=document.getElementById('qOptions'); c.innerHTML='';
+    q.options.forEach((opt,i)=>{
+        const btn=document.createElement('button'); btn.type='button';
+        btn.className='answer-btn'+(answers[currentQ]===i?' selected':'');
+        btn.innerHTML=`<div class="answer-indicator"></div><span>${opt.text}</span>`;
+        btn.onclick=()=>selectAnswer(i); c.appendChild(btn);
+    });
+    document.getElementById('btnBack').style.visibility=currentQ===0?'hidden':'visible';
+    document.getElementById('btnNext').disabled=answers[currentQ]===null;
+    document.getElementById('btnNext').textContent=currentQ===questions.length-1?'Ergebnis anzeigen →':'Weiter →';
+    updateProgress();
+}
+function selectAnswer(i){
+    answers[currentQ]=i;
+    document.querySelectorAll('.answer-btn').forEach((b,j)=>b.classList.toggle('selected',j===i));
+    document.getElementById('btnNext').disabled=false;
+}
+function startQuiz(){
+    document.getElementById('progressWrap').classList.add('visible');
+    document.getElementById('heroSection').style.display='none';
+    showScreen('screenQuestion');
+    renderQuestion();
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextQuestion(){
+    if(answers[currentQ]===null) return;
+    if(currentQ<questions.length-1){ currentQ++; renderQuestion(); window.scrollTo({top:0,behavior:'smooth'}); }
+    else showResult();
+}
+function prevQuestion(){
+    if(currentQ>0){ currentQ--; renderQuestion(); window.scrollTo({top:0,behavior:'smooth'}); }
+}
+function calcIndex(){
+    const raw=answers.reduce((a,ai,qi)=>a+(questions[qi].options[ai].value*questions[qi].weight),0);
+    return Math.round((raw/90)*100);
+}
+function getLevel(s){ return s<=25?'critical':s<=50?'developing':s<=75?'good':'excellent'; }
+function getClusterScores(){
+    const r={};
+    for(const[k,c] of Object.entries(clusters)){
+        const raw=c.questions.reduce((a,qi)=>a+(questions[qi].options[answers[qi]].value*questions[qi].weight),0);
+        r[k]={raw,max:c.maxRaw,pct:Math.round((raw/c.maxRaw)*100),name:c.fullName,color:c.color};
+    }
+    return r;
+}
+function drawRadar(cs){
+    const svg=document.getElementById('radarChart');
+    const cx=130,cy=130,maxR=100,keys=Object.keys(cs),n=keys.length,step=(2*Math.PI)/n,start=-Math.PI/2;
+    let h='';
+    [0.25,0.5,0.75,1].forEach(f=>{
+        const r=maxR*f,pts=[];
+        for(let i=0;i<n;i++){const a=start+i*step; pts.push(`${cx+r*Math.cos(a)},${cy+r*Math.sin(a)}`);}
+        h+=`<polygon points="${pts.join(' ')}" fill="none" stroke="#E0E2E8" stroke-width="1"/>`;
+    });
+    for(let i=0;i<n;i++){const a=start+i*step; h+=`<line x1="${cx}" y1="${cy}" x2="${cx+maxR*Math.cos(a)}" y2="${cy+maxR*Math.sin(a)}" stroke="#E0E2E8" stroke-width="1"/>`;}
+    const dp=[]; keys.forEach((k,i)=>{const a=start+i*step,r=maxR*(cs[k].pct/100); dp.push(`${cx+r*Math.cos(a)},${cy+r*Math.sin(a)}`);});
+    h+=`<polygon points="${dp.join(' ')}" fill="rgba(255,87,29,0.12)" stroke="#FF571D" stroke-width="2.5"/>`;
+    keys.forEach((k,i)=>{
+        const a=start+i*step,r=maxR*(cs[k].pct/100);
+        h+=`<circle cx="${cx+r*Math.cos(a)}" cy="${cy+r*Math.sin(a)}" r="4" fill="#FF571D"/>`;
+        const lx=cx+(maxR+18)*Math.cos(a),ly=cy+(maxR+18)*Math.sin(a);
+        const anc=Math.abs(Math.cos(a))<0.1?'middle':(Math.cos(a)>0?'start':'end');
+        h+=`<text x="${lx}" y="${ly}" text-anchor="${anc}" dominant-baseline="middle" fill="#333" font-size="10" font-weight="600" font-family="Arimo,sans-serif">${clusters[k].name}</text>`;
+    });
+    svg.innerHTML=h;
+}
+function showResult(){
+    document.getElementById('progressWrap').classList.remove('visible');
+    document.getElementById('heroSection').style.display='none';
+    showScreen('screenResult');
+    const score=calcIndex(),level=getLevel(score),data=resultTexts[level],cs=getClusterScores();
+    document.getElementById('resultHeader').className='result-header level-'+level;
+    const circ=document.getElementById('scoreCircle'),circumf=2*Math.PI*85;
+    setTimeout(()=>{circ.style.strokeDashoffset=circumf-(score/100)*circumf;},150);
+    const sEl=document.getElementById('scoreValue');
+    let cur=0; const t0=performance.now();
+    function anim(now){const p=Math.min((now-t0)/1500,1); sEl.textContent=Math.round((1-Math.pow(1-p,3))*score); if(p<1) requestAnimationFrame(anim);}
+    requestAnimationFrame(anim);
+    document.getElementById('scoreBadge').textContent=data.badge;
+    document.getElementById('resultTitle').textContent=data.title;
+    document.getElementById('resultDesc').textContent=data.desc;
+    setTimeout(()=>drawRadar(cs),200);
+    // Legend
+    const leg=document.getElementById('radarLegend'); leg.innerHTML='';
+    for(const[k,d] of Object.entries(cs)){
+        leg.innerHTML+=`<div class="radar-legend-item"><div class="radar-legend-dot" style="background:${d.color}"></div><div class="radar-legend-label">${d.name}</div><div class="radar-legend-bar-wrap"><div class="radar-legend-bar" style="width:${d.pct}%;background:${d.color}"></div></div><div class="radar-legend-pct">${d.pct}%</div></div>`;
+    }
+    // Alerts
+    const alerts=document.getElementById('clusterAlerts'); alerts.innerHTML='';
+    for(const[k,d] of Object.entries(cs)){
+        if(d.pct<40){const t=clusterAlertTexts[k]; alerts.innerHTML+=`<div class="cluster-alert"><span class="cluster-alert-icon">⚠️</span><div class="cluster-alert-text"><strong>Priorität: ${t.p}</strong><br>${t.d}</div></div>`;}
+    }
+    // Recs
+    const rc=document.getElementById('recsContainer'); rc.innerHTML='';
+    const recs=[...scoreRecs[level],...(level!=='critical'?scoreRecs[{excellent:'good',good:'developing',developing:'critical'}[level]]||[]:[])].slice(0,6);
+    recs.forEach(r=>{rc.innerHTML+=`<div class="rec-card"><div class="rec-card-tag">${r.tag}</div><div class="rec-card-title">${r.title}</div><div class="rec-card-desc">${r.desc}</div>${r.url?`<span class="rec-card-arrow">→</span>`:''}  </div>`;
+        if(r.url){rc.lastElementChild.style.cursor='pointer'; rc.lastElementChild.onclick=()=>window.open(r.url,'_blank');}
+    });
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+function submitLead(e){
+    e.preventDefault(); const f=e.target,cs=getClusterScores();
+    const ld={firstName:f.firstName.value,lastName:f.lastName.value,email:f.email.value,company:f.company.value,role:selectedRole,score:calcIndex(),level:getLevel(calcIndex()),clusters:cs,answers:answers.map((ai,qi)=>({question:questions[qi].text,law:questions[qi].law,weight:questions[qi].weight,answer:questions[qi].options[ai].text,value:questions[qi].options[ai].value})),timestamp:new Date().toISOString()};
+    console.log('LEAD:',JSON.stringify(ld,null,2));
+    document.getElementById('leadSection').style.display='none';
+    document.getElementById('leadSuccess').classList.add('active');
+}
+</script>
+</body>
+</html>
