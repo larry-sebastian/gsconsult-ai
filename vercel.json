@@ -10,6 +10,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/kostenrechner", "destination": "/kostenrechner.html" },
     { "source": "/", "destination": "/index.html" }
   ]
 }

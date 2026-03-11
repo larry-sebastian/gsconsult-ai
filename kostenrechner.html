@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kostenrechner psychische Belastung | GS Consult</title>
+    <meta name="description" content="Berechnen Sie in 60 Sekunden, was psychische Belastung Ihr Unternehmen kostet – und wie viel Sie mit gezielter Organisationsentwicklung sparen können.">
+    <meta property="og:title" content="Kostenrechner psychische Belastung | GS Consult">
+    <meta property="og:description" content="Was kostet psychische Belastung Ihr Unternehmen? Berechnen Sie es in 60 Sekunden.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="https://www.gsconsult.de/images/favicon_gs.svg">
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+        body {
+            font-family: 'Arimo', sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+            color: #000;
+            background: #fff;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        :root {
+            --navy: #001134;
+            --navy-dark: #002266;
+            --orange: #FF571D;
+            --orange-dark: #DB3700;
+            --orange-light: #FFBEA8;
+            --gray-light: #CCCFD6;
+            --gray-med: #99A0AE;
+            --gray-dark: #667085;
+            --bg-light: #F2F2F2;
+            --white: #ffffff;
+            --green: #234B41;
+            --green-light: #2d6b55;
+            --yellow: #FFC000;
+            --radius-pill: 34px;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== Top Bar ===== */
+        .top-bar {
+            background: var(--navy-dark);
+            padding: 0.4rem 0;
+            font-size: 0.8rem;
+            color: var(--gray-med);
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar a { color: var(--gray-med); transition: color 0.2s; }
+        .top-bar a:hover { color: var(--orange); }
+        .top-bar-left { display: flex; align-items: center; gap: 1.5rem; }
+        .social-icons { display: flex; gap: 0.75rem; }
+
+        /* ===== Header ===== */
+        .header {
+            background: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo-claim {
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--gray-med);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1.3;
+            max-width: 180px;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+        }
+        .nav-menu li a {
+            display: block;
+            padding: 0 1.25rem;
+            line-height: 72px;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.2s;
+        }
+        .nav-menu li a:hover { color: var(--orange); }
+
+        /* ===== Hero ===== */
+        .hero {
+            background: var(--navy);
+            color: var(--white);
+            padding: 5rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,17,52,0.95) 0%, rgba(0,34,102,0.90) 100%);
+            z-index: 1;
+        }
+        .hero .container { position: relative; z-index: 2; }
+        .hero-label {
+            display: inline-block;
+            color: var(--orange);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: 3.2em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5em;
+        }
+        .hero h1 .highlight {
+            position: relative;
+            display: inline;
+        }
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            left: -4px; right: -4px; bottom: 0;
+            height: 100%;
+            background: var(--orange);
+            z-index: -1;
+            transform: skewX(-2deg);
+            opacity: 0.9;
+        }
+        .hero-subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            color: rgba(255,255,255,0.85);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        .hero-wave {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; z-index: 3;
+            line-height: 0;
+        }
+        .hero-wave svg { width: 100%; height: 60px; display: block; }
+
+        /* ===== CTA Button ===== */
+        .cta-button {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: var(--radius-pill);
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid var(--white);
+            background: var(--white);
+            color: var(--navy);
+            transition: transform 0.3s, color 0.3s, background 0.3s, border-color 0.3s;
+        }
+        .cta-button:hover {
+            background: var(--orange);
+            color: var(--white);
+            border-color: var(--orange);
+            transform: scale(1.05);
+        }
+        .cta-button.orange {
+            background: var(--orange);
+            color: var(--white);
+            border-color: var(--orange);
+        }
+        .cta-button.orange:hover {
+            background: var(--orange-dark);
+            border-color: var(--orange-dark);
+        }
+        .cta-button.dark {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+        .cta-button.dark:hover {
+            background: var(--orange);
+            border-color: var(--orange);
+        }
+
+        /* ===== Steps Section ===== */
+        .steps-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        .section-label {
+            display: block;
+            color: var(--orange);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 3rem;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .step-card {
+            background: var(--bg-light);
+            border-radius: 2em;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        }
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: var(--orange);
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        .step-card h3 { color: var(--navy); margin-bottom: 0.5rem; font-size: 1.25rem; }
+        .step-card p { color: var(--gray-dark); font-size: 0.95rem; }
+
+        /* ===== Calculator Section ===== */
+        .calculator-section {
+            padding: 5rem 0;
+            background: var(--bg-light);
+        }
+        .calc-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Calculator Card */
+        .calc-card {
+            background: var(--white);
+            border-radius: 2em;
+            padding: 2.5rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+        }
+        .calc-card h2 {
+            color: var(--navy);
+            font-size: 1.75em;
+            margin-bottom: 0.5rem;
+        }
+        .calc-card .subtitle {
+            color: var(--gray-dark);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+        }
+        .form-group .helper {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--gray-dark);
+            margin-bottom: 0.4rem;
+        }
+        .form-group input[type="number"],
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-family: 'Arimo', sans-serif;
+            color: var(--navy);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: var(--white);
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(255,87,29,0.12);
+        }
+
+        /* Range slider */
+        .range-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .range-wrapper input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            height: 6px;
+            background: var(--gray-light);
+            border-radius: 3px;
+            outline: none;
+        }
+        .range-wrapper input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: var(--orange);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        .range-value {
+            min-width: 60px;
+            text-align: right;
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 1.1rem;
+        }
+
+        /* Divider line between sections */
+        .form-divider {
+            border: none;
+            border-top: 1px solid var(--bg-light);
+            margin: 1.5rem 0;
+        }
+        .form-section-title {
+            font-weight: 700;
+            color: var(--orange);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .calc-button {
+            width: 100%;
+            padding: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: var(--radius-pill);
+            background: var(--orange);
+            color: var(--white);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .calc-button:hover {
+            background: var(--orange-dark);
+            transform: scale(1.02);
+        }
+        .calc-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: var(--navy);
+            border-radius: 2em;
+            padding: 2.5rem;
+            color: var(--white);
+            position: sticky;
+            top: 96px;
+        }
+        .results-panel h2 {
+            color: var(--white);
+            font-size: 1.5em;
+            margin-bottom: 0.25rem;
+        }
+        .results-panel .subtitle {
+            color: var(--gray-med);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .result-block {
+            margin-bottom: 1.5rem;
+        }
+        .result-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+        }
+        .result-value.highlight-orange { color: var(--orange); }
+        .result-value.highlight-green { color: #5cb85c; }
+        .result-detail {
+            font-size: 0.85rem;
+            color: var(--gray-med);
+            margin-top: 0.15rem;
+        }
+
+        .result-divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin: 1.25rem 0;
+        }
+
+        .hebel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .hebel-item {
+            background: rgba(255,255,255,0.06);
+            border-radius: 1em;
+            padding: 1rem;
+            text-align: center;
+        }
+        .hebel-item .hebel-val {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #5cb85c;
+        }
+        .hebel-item .hebel-label {
+            font-size: 0.75rem;
+            color: var(--gray-med);
+            margin-top: 0.25rem;
+        }
+
+        /* Placeholder state */
+        .results-placeholder {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        .results-placeholder .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.4;
+        }
+        .results-placeholder p {
+            color: var(--gray-med);
+            font-size: 0.95rem;
+        }
+
+        .results-calculated { display: none; }
+
+        /* ===== Lead Gate (overlay inside results) ===== */
+        .lead-gate {
+            display: none;
+            margin-top: 1.5rem;
+        }
+        .lead-gate.visible { display: block; }
+
+        .lead-gate h3 {
+            color: var(--white);
+            font-size: 1.15rem;
+            margin-bottom: 0.25rem;
+        }
+        .lead-gate .gate-subtitle {
+            color: var(--gray-med);
+            font-size: 0.85rem;
+            margin-bottom: 1.25rem;
+        }
+        .lead-gate .form-group label {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+        }
+        .lead-gate .form-group input {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.15);
+            color: var(--white);
+        }
+        .lead-gate .form-group input::placeholder {
+            color: var(--gray-med);
+        }
+        .lead-gate .form-group input:focus {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(255,87,29,0.2);
+        }
+
+        .download-button {
+            width: 100%;
+            padding: 1rem;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            border-radius: var(--radius-pill);
+            background: var(--orange);
+            color: var(--white);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            margin-top: 0.5rem;
+        }
+        .download-button:hover {
+            background: var(--orange-dark);
+            transform: scale(1.02);
+        }
+        .download-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .privacy-note {
+            font-size: 0.7rem;
+            color: var(--gray-med);
+            margin-top: 0.75rem;
+            text-align: center;
+        }
+        .privacy-note a { color: var(--orange); }
+
+        /* Report blur overlay */
+        .report-teaser {
+            position: relative;
+            margin-top: 1.5rem;
+        }
+        .report-teaser-blur {
+            filter: blur(4px);
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.6;
+        }
+
+        /* ===== Booking Section ===== */
+        .booking-section {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .booking-text h2 { color: var(--navy); font-size: 2.2em; margin-bottom: 1rem; }
+        .booking-text p { color: var(--gray-dark); font-size: 1.05rem; margin-bottom: 1.5rem; }
+        .booking-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        .booking-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--navy);
+            font-weight: 400;
+        }
+        .booking-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+            font-weight: 700;
+        }
+        .qr-placeholder {
+            background: var(--bg-light);
+            border-radius: 2em;
+            padding: 3rem;
+            text-align: center;
+        }
+        .qr-box {
+            width: 220px;
+            height: 220px;
+            background: var(--white);
+            border: 3px dashed var(--gray-light);
+            border-radius: 1em;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-med);
+            font-size: 0.9rem;
+        }
+        .qr-placeholder p {
+            color: var(--navy);
+            font-weight: 600;
+        }
+        .qr-placeholder .qr-sub {
+            color: var(--gray-dark);
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+
+        /* ===== Trust Section ===== */
+        .trust-section {
+            padding: 4rem 0;
+            background: var(--bg-light);
+        }
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .trust-item .trust-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .trust-item .trust-label {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 0 1.5rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .footer-section h4 {
+            color: var(--orange);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+        .footer-section p, .footer-section a {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+        .footer-section a:hover { color: var(--orange); }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.8rem;
+            color: var(--gray-med);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.2em; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .calc-wrapper { grid-template-columns: 1fr; }
+            .results-panel { position: static; }
+            .booking-grid { grid-template-columns: 1fr; }
+            .trust-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        /* Number input hide spinners */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] { -moz-appearance: textfield; }
+    </style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-left">
+            <span>📍 Stau 123 | 26122 Oldenburg</span>
+            <span>📞 0441 219 805 90</span>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/company/gs-consult/" aria-label="LinkedIn">💼</a>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <a href="https://www.gsconsult.de" class="logo">
+                <img src="https://www.gsconsult.de/images/GS-Consult_responsive-Logo-mit-Claim_weissorange.svg" alt="GS Consult Logo" style="height: 55px;">
+                <span class="logo-claim">Perspektiven wechseln, Chancen erkennen</span>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="https://www.gsconsult.de/leistungen.html">Leistungen</a></li>
+                    <li><a href="https://www.gsconsult.de/gesundheit-zusammenarbeit.html">Gesundheit</a></li>
+                    <li><a href="https://www.gsconsult.de/kontakt.html">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <span class="hero-label">Kostenrechner für Unternehmen</span>
+        <h1><span class="highlight">Was kostet psychische</span><br><span class="highlight">Belastung Ihr Unternehmen?</span></h1>
+        <p class="hero-subtitle">Berechnen Sie in 60 Sekunden die versteckten Kosten durch Krankenstand und Fluktuation – und entdecken Sie Ihr Einsparpotenzial.</p>
+        <a href="#rechner" class="cta-button">Jetzt berechnen →</a>
+    </div>
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/></svg>
+    </div>
+</section>
+
+<!-- How it works -->
+<section class="steps-section">
+    <div class="container">
+        <span class="section-label">So funktioniert's</span>
+        <h2 class="section-title">In 3 Schritten zu Ihrem Kurzbericht</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Kennzahlen eingeben</h3>
+                <p>Mitarbeitende, Krankenquote, Fluktuation und weitere Indikatoren – anonym und unverbindlich.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Kosten berechnen</h3>
+                <p>Unser Modell kalkuliert die versteckten Kosten auf Basis anerkannter Studien (BAuA, iga, DGFP, Gallup).</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Kurzbericht erhalten</h3>
+                <p>Laden Sie Ihren individuellen Report als PDF herunter – mit Einsparpotenzial und konkretem Handlungsimpuls.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Calculator -->
+<section class="calculator-section" id="rechner">
+    <div class="container">
+        <div class="calc-wrapper">
+            <!-- Left: Input Form -->
+            <div class="calc-card">
+                <h2>Ihre Kennzahlen</h2>
+                <p class="subtitle">Alle Angaben werden vertraulich behandelt und nicht gespeichert.</p>
+
+                <div class="form-section-title">Unternehmensdaten</div>
+
+                <div class="form-group">
+                    <label for="employees">Anzahl Mitarbeitende</label>
+                    <input type="number" id="employees" placeholder="z. B. 200" min="10" max="50000" step="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="branche">Branche</label>
+                    <select id="branche">
+                        <option value="">Bitte wählen…</option>
+                        <option value="energie">Energie & Versorgung</option>
+                        <option value="industrie">Industrie & Produktion</option>
+                        <option value="handel">Handel & Logistik</option>
+                        <option value="it">IT & Technologie</option>
+                        <option value="finanz">Finanzen & Versicherung</option>
+                        <option value="gesundheit">Gesundheit & Soziales</option>
+                        <option value="oeffentlich">Öffentlicher Dienst</option>
+                        <option value="sonstige">Sonstige Dienstleistungen</option>
+                    </select>
+                </div>
+
+                <hr class="form-divider">
+                <div class="form-section-title">Belastungsindikatoren</div>
+
+                <div class="form-group">
+                    <label for="krankenquote">Krankenquote</label>
+                    <span class="helper">Durchschnittlicher Anteil krankheitsbedingter Fehltage (DE-Schnitt: 5,5 %)</span>
+                    <div class="range-wrapper">
+                        <input type="range" id="krankenquote" min="0" max="15" step="0.1" value="5.5">
+                        <span class="range-value" id="krankenquote-val">5,5 %</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fluktuation">Fluktuationsquote</label>
+                    <span class="helper">Anteil der Mitarbeitenden, die pro Jahr das Unternehmen verlassen (DE-Schnitt: 14 %)</span>
+                    <div class="range-wrapper">
+                        <input type="range" id="fluktuation" min="0" max="35" step="0.5" value="14">
+                        <span class="range-value" id="fluktuation-val">14,0 %</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ueberstunden">Ø Überstunden pro Woche / MA</label>
+                    <span class="helper">Regelmäßige Mehrarbeit ist ein Frühindikator für Überlastung</span>
+                    <div class="range-wrapper">
+                        <input type="range" id="ueberstunden" min="0" max="15" step="0.5" value="3">
+                        <span class="range-value" id="ueberstunden-val">3,0 h</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fuehrung">Führungskräftequote mit Schulung</label>
+                    <span class="helper">Anteil der FK, die in den letzten 2 Jahren eine Führungsschulung besucht haben</span>
+                    <div class="range-wrapper">
+                        <input type="range" id="fuehrung" min="0" max="100" step="5" value="30">
+                        <span class="range-value" id="fuehrung-val">30 %</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="engagement">Mitarbeiterzufriedenheit (eNPS)</label>
+                    <span class="helper">Employee Net Promoter Score, falls bekannt (–100 bis +100, DE-Schnitt: ~+10)</span>
+                    <div class="range-wrapper">
+                        <input type="range" id="engagement" min="-100" max="100" step="5" value="10">
+                        <span class="range-value" id="engagement-val">+10</span>
+                    </div>
+                </div>
+
+                <button class="calc-button" id="btn-calc" onclick="berechnen()">
+                    Kosten berechnen →
+                </button>
+            </div>
+
+            <!-- Right: Results Panel -->
+            <div class="results-panel" id="results-panel">
+                <!-- Placeholder before calculation -->
+                <div class="results-placeholder" id="results-placeholder">
+                    <div class="icon">📊</div>
+                    <p>Geben Sie links Ihre Kennzahlen ein und klicken Sie auf <strong>"Kosten berechnen"</strong> – Ihre Ergebnisse erscheinen hier.</p>
+                </div>
+
+                <!-- Results after calculation -->
+                <div class="results-calculated" id="results-calculated">
+                    <h2>Ihre Ergebnisse</h2>
+                    <p class="subtitle">Basierend auf Ihren Angaben und Branchenbenchmarks</p>
+
+                    <div class="result-block">
+                        <div class="result-label">Gesamtkosten Status Quo / Jahr</div>
+                        <div class="result-value highlight-orange" id="r-gesamt">–</div>
+                        <div class="result-detail" id="r-gesamt-detail">Krankenstand + Fluktuation + Überlastungseffekte</div>
+                    </div>
+
+                    <hr class="result-divider">
+
+                    <div class="result-block">
+                        <div class="result-label">Davon Krankenstand</div>
+                        <div class="result-value" id="r-kranken">–</div>
+                        <div class="result-detail" id="r-kranken-detail"></div>
+                    </div>
+
+                    <div class="result-block">
+                        <div class="result-label">Davon Fluktuation</div>
+                        <div class="result-value" id="r-flukt">–</div>
+                        <div class="result-detail" id="r-flukt-detail"></div>
+                    </div>
+
+                    <div class="result-block">
+                        <div class="result-label">Davon Überlastung & Zusatzeffekte</div>
+                        <div class="result-value" id="r-extra">–</div>
+                        <div class="result-detail" id="r-extra-detail"></div>
+                    </div>
+
+                    <hr class="result-divider">
+
+                    <div class="result-block">
+                        <div class="result-label">Einsparpotenzial pro Prozentpunkt</div>
+                        <div class="hebel-grid">
+                            <div class="hebel-item">
+                                <div class="hebel-val" id="r-hebel-krank">–</div>
+                                <div class="hebel-label">pro 1 PP Krankenstand</div>
+                            </div>
+                            <div class="hebel-item">
+                                <div class="hebel-val" id="r-hebel-flukt">–</div>
+                                <div class="hebel-label">pro 1 PP Fluktuation</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="result-divider">
+
+                    <div class="result-block">
+                        <div class="result-label">Risikoeinschätzung</div>
+                        <div class="result-value" id="r-risiko" style="font-size:1.3rem;">–</div>
+                    </div>
+
+                    <!-- Lead Gate -->
+                    <div class="lead-gate visible" id="lead-gate">
+                        <hr class="result-divider">
+                        <h3>📄 Ihren Kurzbericht herunterladen</h3>
+                        <p class="gate-subtitle">Erhalten Sie Ihren individuellen Report als PDF – mit detaillierten Rechenwegen, Einsparszenario und Handlungsempfehlung.</p>
+
+                        <div class="form-group">
+                            <label for="lead-vorname">Vorname *</label>
+                            <input type="text" id="lead-vorname" placeholder="Vorname">
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-nachname">Nachname *</label>
+                            <input type="text" id="lead-nachname" placeholder="Nachname">
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-email">E-Mail-Adresse *</label>
+                            <input type="email" id="lead-email" placeholder="name@unternehmen.de">
+                        </div>
+                        <div class="form-group">
+                            <label for="lead-telefon">Telefon *</label>
+                            <input type="tel" id="lead-telefon" placeholder="+49 …">
+                        </div>
+
+                        <button class="download-button" id="btn-download" onclick="downloadReport()">
+                            📥 Kurzbericht herunterladen (PDF)
+                        </button>
+                        <p class="privacy-note">Mit dem Download stimmen Sie zu, dass GS Consult Sie kontaktieren darf. <a href="https://www.gsconsult.de/datenschutz.html">Datenschutz</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Booking / CTA Section -->
+<section class="booking-section" id="termin">
+    <div class="container">
+        <div class="booking-grid">
+            <div class="booking-text">
+                <span class="section-label">Nächster Schritt</span>
+                <h2>Kostenloses Erstgespräch vereinbaren</h2>
+                <p>Lernen Sie uns kennen – unverbindlich und ohne Verpflichtung. In 30 Minuten besprechen wir Ihre Situation und zeigen erste Handlungsoptionen auf.</p>
+                <ul class="booking-features">
+                    <li>30 Minuten, persönlich oder virtuell</li>
+                    <li>Erste Einschätzung Ihrer Situation</li>
+                    <li>Konkrete Handlungsempfehlungen</li>
+                    <li>Unverbindlich und kostenfrei</li>
+                </ul>
+                <a href="#termin" class="cta-button dark">Termin vereinbaren →</a>
+            </div>
+            <div class="qr-placeholder">
+                <div class="qr-box">
+                    <!-- QR CODE HIER EINFÜGEN -->
+                    QR-Code<br>Booking Page
+                </div>
+                <p>QR-Code scannen</p>
+                <p class="qr-sub">oder direkt online einen Termin buchen</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust / Social Proof -->
+<section class="trust-section">
+    <div class="container">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="trust-value">20+</div>
+                <div class="trust-label">Jahre Erfahrung</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-value">500+</div>
+                <div class="trust-label">Begleitete Organisationen</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-value">100 %</div>
+                <div class="trust-label">Interdisziplinäres Team</div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-value">ISO</div>
+                <div class="trust-label">Zertifizierte Prozesse</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>GS Consult GmbH</h4>
+                <p>Stau 123<br>26122 Oldenburg<br>Tel: 0441 219 805 90</p>
+            </div>
+            <div class="footer-section">
+                <h4>Leistungen</h4>
+                <p><a href="https://www.gsconsult.de/gesundheit-zusammenarbeit.html">Gesundheit & Zusammenarbeit</a></p>
+                <p><a href="https://www.gsconsult.de/fuehrung-leadership.html">Führung & Leadership</a></p>
+                <p><a href="https://www.gsconsult.de/perspektiven-entwicklung.html">Perspektiven & Entwicklung</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Rechtliches</h4>
+                <p><a href="https://www.gsconsult.de/impressum.html">Impressum</a></p>
+                <p><a href="https://www.gsconsult.de/datenschutz.html">Datenschutz</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 GS Consult GmbH – Perspektiven wechseln. Chancen erkennen.
+        </div>
+    </div>
+</footer>
+
+<script>
+// ===== Range slider live updates =====
+const rangeConfigs = {
+    'krankenquote': { suffix: ' %', decimals: 1 },
+    'fluktuation': { suffix: ' %', decimals: 1 },
+    'ueberstunden': { suffix: ' h', decimals: 1 },
+    'fuehrung': { suffix: ' %', decimals: 0 },
+    'engagement': { suffix: '', decimals: 0, signed: true },
+};
+
+Object.keys(rangeConfigs).forEach(id => {
+    const slider = document.getElementById(id);
+    const display = document.getElementById(id + '-val');
+    const cfg = rangeConfigs[id];
+    slider.addEventListener('input', () => {
+        let v = parseFloat(slider.value);
+        let str = v.toFixed(cfg.decimals).replace('.', ',');
+        if (cfg.signed && v > 0) str = '+' + str;
+        display.textContent = str + cfg.suffix;
+    });
+});
+
+// ===== Branchenbenchmarks =====
+const branchenGehalt = {
+    'energie': 55000, 'industrie': 48000, 'handel': 38000, 'it': 60000,
+    'finanz': 56000, 'gesundheit': 40000, 'oeffentlich': 45000, 'sonstige': 44000, '': 48000
+};
+
+// ===== Calculation =====
+function berechnen() {
+    const ma = parseInt(document.getElementById('employees').value) || 0;
+    if (ma < 10) {
+        alert('Bitte geben Sie mindestens 10 Mitarbeitende ein.');
+        return;
+    }
+
+    const branche = document.getElementById('branche').value;
+    const kq = parseFloat(document.getElementById('krankenquote').value);
+    const fq = parseFloat(document.getElementById('fluktuation').value);
+    const ue = parseFloat(document.getElementById('ueberstunden').value);
+    const fk = parseFloat(document.getElementById('fuehrung').value);
+    const enps = parseFloat(document.getElementById('engagement').value);
+
+    const gehalt = branchenGehalt[branche] || 48000;
+    const agFaktor = 1.3;
+    const arbeitstage = 220;
+    const kostenProTag = (gehalt * agFaktor) / arbeitstage;
+
+    // Krankenstand
+    const fehltageProMA = arbeitstage * (kq / 100);
+    const direktKranken = ma * fehltageProMA * kostenProTag;
+    const indirektFaktor = 1.25; // conservative
+    const gesamtKranken = direktKranken * (1 + indirektFaktor);
+
+    // Fluktuation
+    const abgaenge = Math.round(ma * (fq / 100));
+    const kostenProAbgang = gehalt * 0.65;
+    const gesamtFlukt = abgaenge * kostenProAbgang;
+
+    // Überstunden-Zusatzkosten (presenteeism proxy)
+    const ueberstundenKostenProMA = ue * 52 * (kostenProTag / 8); // hourly rate × weeks
+    const ueberstundenGesamt = ma * ueberstundenKostenProMA * 0.3; // 30% as hidden cost (presenteeism, errors)
+
+    // Engagement / FK penalty
+    let engagementPenalty = 0;
+    if (enps < 0) engagementPenalty += ma * gehalt * 0.005; // disengagement cost
+    if (fk < 50) engagementPenalty += ma * gehalt * 0.003 * ((50 - fk) / 50); // leadership gap
+
+    const extraKosten = ueberstundenGesamt + engagementPenalty;
+    const gesamt = gesamtKranken + gesamtFlukt + extraKosten;
+
+    // Hebel
+    const hebelKranken = ma * (arbeitstage * 0.01) * kostenProTag * (1 + indirektFaktor);
+    const hebelFlukt = Math.round(ma * 0.01) * kostenProAbgang * 1.3;
+
+    // Risikoeinschätzung
+    let risiko = '';
+    let risikoScore = 0;
+    if (kq > 7) risikoScore += 2; else if (kq > 5.5) risikoScore += 1;
+    if (fq > 18) risikoScore += 2; else if (fq > 14) risikoScore += 1;
+    if (ue > 5) risikoScore += 2; else if (ue > 3) risikoScore += 1;
+    if (fk < 20) risikoScore += 2; else if (fk < 50) risikoScore += 1;
+    if (enps < -10) risikoScore += 2; else if (enps < 10) risikoScore += 1;
+
+    if (risikoScore >= 7) risiko = '🔴 Hohe psychische Belastungskosten – dringender Handlungsbedarf';
+    else if (risikoScore >= 4) risiko = '🟡 Mittlere Belastungskosten – Handlungsbedarf vorhanden';
+    else risiko = '🟢 Moderate Belastungskosten – präventives Handeln empfohlen';
+
+    // Display
+    document.getElementById('results-placeholder').style.display = 'none';
+    document.getElementById('results-calculated').style.display = 'block';
+
+    document.getElementById('r-gesamt').textContent = formatEuro(gesamt);
+    document.getElementById('r-kranken').textContent = formatEuro(gesamtKranken);
+    document.getElementById('r-kranken-detail').textContent =
+        `${fehltageProMA.toFixed(1)} Fehltage/MA × ${formatEuro(kostenProTag, true)}/Tag × Faktor ${(1 + indirektFaktor).toFixed(2)}`;
+    document.getElementById('r-flukt').textContent = formatEuro(gesamtFlukt);
+    document.getElementById('r-flukt-detail').textContent =
+        `${abgaenge} Abgänge × ${formatEuro(kostenProAbgang, true)} pro Abgang`;
+    document.getElementById('r-extra').textContent = formatEuro(extraKosten);
+    document.getElementById('r-extra-detail').textContent =
+        'Überstunden-Folgekosten, Engagement-Verluste, Führungslücken';
+    document.getElementById('r-hebel-krank').textContent = formatEuro(hebelKranken, true);
+    document.getElementById('r-hebel-flukt').textContent = formatEuro(hebelFlukt, true);
+    document.getElementById('r-risiko').textContent = risiko;
+
+    // Store for PDF
+    window.__calcResults = {
+        ma, branche, gehalt, kq, fq, ue, fk, enps,
+        gesamtKranken, gesamtFlukt, extraKosten, gesamt,
+        hebelKranken, hebelFlukt, fehltageProMA, abgaenge,
+        kostenProTag, kostenProAbgang, risiko, risikoScore,
+        indirektFaktor
+    };
+
+    // Scroll to results on mobile
+    if (window.innerWidth < 900) {
+        document.getElementById('results-panel').scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function formatEuro(val, short) {
+    if (val >= 1000000 && !short) {
+        return (val / 1000000).toFixed(2).replace('.', ',') + ' Mio. €';
+    }
+    return Math.round(val).toLocaleString('de-DE') + ' €';
+}
+
+// ===== PDF Report Generation =====
+function downloadReport() {
+    const vorname = document.getElementById('lead-vorname').value.trim();
+    const nachname = document.getElementById('lead-nachname').value.trim();
+    const email = document.getElementById('lead-email').value.trim();
+    const telefon = document.getElementById('lead-telefon').value.trim();
+
+    if (!vorname || !nachname || !email || !telefon) {
+        alert('Bitte füllen Sie alle Felder aus.');
+        return;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+        alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+        return;
+    }
+    if (!window.__calcResults) {
+        alert('Bitte berechnen Sie zuerst Ihre Kosten.');
+        return;
+    }
+
+    // TODO: Send lead data to backend (webhook, CRM, etc.)
+    console.log('Lead:', { vorname, nachname, email, telefon, ...window.__calcResults });
+
+    // Generate PDF report
+    generatePDF(vorname, nachname);
+}
+
+function generatePDF(vorname, nachname) {
+    const r = window.__calcResults;
+    const d = new Date();
+    const datum = d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+    // Build HTML for printing as PDF
+    const reportHTML = `
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Kurzbericht – Kosten psychischer Belastung</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Arimo:wght@300;400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Arimo', sans-serif; color: #001134; font-size: 11pt; line-height: 1.6; }
+  .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 20mm; position: relative; }
+  .header-bar { background: #001134; color: white; padding: 20px 30px; margin: -20mm -20mm 20px; display: flex; justify-content: space-between; align-items: center; }
+  .header-bar h1 { font-size: 16pt; font-weight: 700; }
+  .header-bar .meta { font-size: 9pt; color: #99A0AE; text-align: right; }
+  .logo-text { color: #FF571D; font-weight: 700; font-size: 14pt; }
+  .logo-text span { color: white; }
+  h2 { font-size: 14pt; color: #001134; margin: 20px 0 10px; border-bottom: 2px solid #FF571D; padding-bottom: 5px; }
+  h3 { font-size: 11pt; color: #FF571D; margin-top: 14px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; font-size: 9pt; }
+  .kpi-row { display: flex; gap: 15px; margin: 15px 0; }
+  .kpi-card { flex: 1; background: #F2F2F2; border-radius: 10px; padding: 15px; text-align: center; border-top: 3px solid #001134; }
+  .kpi-card.orange { border-top-color: #FF571D; }
+  .kpi-card.green { border-top-color: #234B41; }
+  .kpi-card .value { font-size: 20pt; font-weight: 700; color: #001134; }
+  .kpi-card.orange .value { color: #FF571D; }
+  .kpi-card.green .value { color: #234B41; }
+  .kpi-card .label { font-size: 8pt; color: #667085; margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 10pt; }
+  thead th { background: #001134; color: white; padding: 8px 10px; text-align: left; font-size: 9pt; font-weight: 600; }
+  tbody td { padding: 7px 10px; border-bottom: 1px solid #E2E8F0; }
+  tbody tr:nth-child(even) { background: #F2F2F2; }
+  .number { text-align: right; }
+  .formula { background: #F2F2F2; border-left: 3px solid #FF571D; padding: 10px 14px; margin: 10px 0; font-size: 10pt; }
+  .formula .result { color: #FF571D; font-weight: 700; }
+  .cta-box { background: #001134; color: white; border-radius: 10px; padding: 20px; margin-top: 20px; text-align: center; }
+  .cta-box h3 { color: #FF571D; margin-top: 0; }
+  .cta-box p { color: #CCCFD6; font-size: 10pt; }
+  .qr-placeholder { width: 120px; height: 120px; border: 2px dashed #99A0AE; border-radius: 8px; margin: 12px auto; display: flex; align-items: center; justify-content: center; color: #99A0AE; font-size: 9pt; }
+  .sources { font-size: 8pt; color: #667085; margin-top: 20px; }
+  .footer { position: absolute; bottom: 15mm; left: 20mm; right: 20mm; font-size: 7pt; color: #99A0AE; display: flex; justify-content: space-between; border-top: 1px solid #E2E8F0; padding-top: 5px; }
+  @media print { body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .page { margin: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="header-bar">
+    <div>
+      <div class="logo-text">GS<span>CONSULT</span></div>
+      <h1>Kurzbericht: Kosten psychischer Belastung</h1>
+    </div>
+    <div class="meta">
+      Erstellt für: ${vorname} ${nachname}<br>
+      Datum: ${datum}<br>
+      Vertraulich
+    </div>
+  </div>
+
+  <p style="margin-bottom:15px;">Dieser Bericht zeigt auf Basis Ihrer Unternehmenskennzahlen und anerkannter Studien, welche versteckten Kosten durch psychische Belastung entstehen – und welches Einsparpotenzial gezielte Organisationsentwicklung bietet.</p>
+
+  <div class="kpi-row">
+    <div class="kpi-card orange">
+      <div class="value">${formatEuro(r.gesamt)}</div>
+      <div class="label">Gesamtkosten / Jahr</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="value">${formatEuro(r.hebelKranken)}</div>
+      <div class="label">Einsparung pro 1 PP Krankenstand</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="value">${formatEuro(r.hebelFlukt)}</div>
+      <div class="label">Einsparung pro 1 PP Fluktuation</div>
+    </div>
+  </div>
+
+  <h2>Ihre Ausgangslage</h2>
+  <table>
+    <thead><tr><th>Kennzahl</th><th>Ihr Wert</th><th>DE-Durchschnitt</th></tr></thead>
+    <tbody>
+      <tr><td>Mitarbeitende</td><td class="number">${r.ma}</td><td class="number">–</td></tr>
+      <tr><td>Krankenquote</td><td class="number">${r.kq.toFixed(1).replace('.', ',')} %</td><td class="number">5,5 %</td></tr>
+      <tr><td>Fluktuationsquote</td><td class="number">${r.fq.toFixed(1).replace('.', ',')} %</td><td class="number">14,0 %</td></tr>
+      <tr><td>Ø Überstunden / Woche</td><td class="number">${r.ue.toFixed(1).replace('.', ',')} h</td><td class="number">3,0 h</td></tr>
+      <tr><td>FK-Schulungsquote</td><td class="number">${r.fk} %</td><td class="number">~40 %</td></tr>
+      <tr><td>eNPS</td><td class="number">${r.enps > 0 ? '+' : ''}${r.enps}</td><td class="number">+10</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Kostenberechnung im Detail</h2>
+
+  <h3>Krankenstand</h3>
+  <div class="formula">
+    ${r.ma} MA × ${r.fehltageProMA.toFixed(1)} Fehltage × ${formatEuro(r.kostenProTag, true)}/Tag × Faktor ${(1 + r.indirektFaktor).toFixed(2)}<br>
+    = <span class="result">${formatEuro(r.gesamtKranken)}</span> / Jahr (direkt + indirekt)
+  </div>
+
+  <h3>Fluktuation</h3>
+  <div class="formula">
+    ${r.abgaenge} Abgänge × ${formatEuro(r.kostenProAbgang, true)} pro Abgang<br>
+    = <span class="result">${formatEuro(r.gesamtFlukt)}</span> / Jahr
+  </div>
+
+  <h3>Überlastung & Engagement</h3>
+  <div class="formula">
+    Überstunden-Folgekosten + Disengagement + Führungslücken<br>
+    = <span class="result">${formatEuro(r.extraKosten)}</span> / Jahr
+  </div>
+
+  <h2>Einsparpotenzial</h2>
+  <table>
+    <thead><tr><th>Szenario</th><th>Veränderung</th><th>Einsparung / Jahr</th></tr></thead>
+    <tbody>
+      <tr><td>Konservativ</td><td>–2 PP Krankenstand, –3 PP Fluktuation</td><td class="number">${formatEuro(r.hebelKranken * 2 + r.hebelFlukt * 3)}</td></tr>
+      <tr><td>Realistisch</td><td>–3 PP Krankenstand, –5 PP Fluktuation</td><td class="number">${formatEuro(r.hebelKranken * 3 + r.hebelFlukt * 5)}</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Risikoeinschätzung</h2>
+  <p style="font-size:12pt; font-weight:700; margin:10px 0;">${r.risiko}</p>
+
+  <div class="cta-box">
+    <h3>Kostenloses Erstgespräch vereinbaren</h3>
+    <p>Lassen Sie uns gemeinsam besprechen, wie Sie die Kosten psychischer Belastung in Ihrem Unternehmen nachhaltig senken können – unverbindlich und kostenfrei.</p>
+    <div class="qr-placeholder">QR-Code<br>Booking</div>
+    <p style="margin-top:8px;">GS Consult GmbH · 0441 219 805 90 · www.gsconsult.de</p>
+  </div>
+
+  <div class="sources">
+    <strong>Quellen:</strong> BAuA Arbeitswelt im Wandel 2024 · iga.Report 28 · IW Köln Personalzusatzkosten 2024 · DGFP Fluktuationskostenrechner 2023 · Gallup Engagement Index 2023 · Badura et al. Fehlzeiten-Report 2023
+  </div>
+
+  <div class="footer">
+    <span>Kurzbericht Kosten psychischer Belastung · GS Consult GmbH</span>
+    <span>Erstellt am ${datum} · Vertraulich</span>
+  </div>
+</div>
+</body>
+</html>`;
+
+    // Open print dialog
+    const win = window.open('', '_blank');
+    win.document.write(reportHTML);
+    win.document.close();
+    setTimeout(() => {
+        win.print();
+    }, 800);
+}
+</script>
+
+</body>
+</html>
