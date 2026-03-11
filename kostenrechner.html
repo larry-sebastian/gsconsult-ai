@@ -1189,13 +1189,18 @@ function berechnen() {
     document.getElementById('r-hebel-flukt').textContent = formatEuro(hebelFlukt, true);
     document.getElementById('r-risiko').textContent = risiko;
 
-    // Store for PDF
+    // Store for PDF + lead submission
     window.__calcResults = {
         ma, branche, gehalt, kq, fq, ue, fk, enps,
         gesamtKranken, gesamtFlukt, extraKosten, gesamt,
         hebelKranken, hebelFlukt, fehltageProMA, abgaenge,
         kostenProTag, kostenProAbgang, risiko, risikoScore,
-        indirektFaktor
+        indirektFaktor,
+        krankenquote: kq,
+        fluktquote: fq,
+        gesamtFormatted: formatEuro(gesamt),
+        hebelKrankenFormatted: formatEuro(hebelKranken),
+        hebelFluktFormatted: formatEuro(hebelFlukt)
     };
 
     // Scroll to results on mobile
@@ -1231,8 +1236,31 @@ function downloadReport() {
         return;
     }
 
-    // TODO: Send lead data to backend (webhook, CRM, etc.)
-    console.log('Lead:', { vorname, nachname, email, telefon, ...window.__calcResults });
+    // Send lead data to Slack channel via FormSubmit
+    const leadPayload = {
+        _subject: `Neuer Lead: ${vorname} ${nachname} – Kostenrechner GB Psych`,
+        _template: 'table',
+        _captcha: 'false',
+        Vorname: vorname,
+        Nachname: nachname,
+        'E-Mail': email,
+        Telefon: telefon,
+        'Anzahl MA': window.__calcResults.ma || '',
+        Branche: document.getElementById('branche')?.selectedOptions[0]?.text || '',
+        'Krankenquote (%)': window.__calcResults.krankenquote || '',
+        'Fluktuationsquote (%)': window.__calcResults.fluktquote || '',
+        'Gesamtkosten (geschätzt)': window.__calcResults.gesamtFormatted || '',
+        'Einspar-Hebel Krankenstand/PP': window.__calcResults.hebelKrankenFormatted || '',
+        'Einspar-Hebel Fluktuation/PP': window.__calcResults.hebelFluktFormatted || '',
+        Risikoeinschätzung: window.__calcResults.risiko || '',
+        Zeitpunkt: new Date().toLocaleString('de-DE')
+    };
+
+    fetch('https://formsubmit.co/ajax/gbpsy-kosten-leads-aaaatnboaltkh5pz2wibm5mfcy@gscteamgruppe.slack.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(leadPayload)
+    }).catch(err => console.warn('Lead-Versand fehlgeschlagen:', err));
 
     // Generate PDF report
     generatePDF(vorname, nachname);
